@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Mundial de Clubes ⚽</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+
+    background:
+    linear-gradient(
+        135deg,
+        #07152f,
+        #0b3d91,
+        #06101f
+    );
+
+    color:white;
+
+    min-height:100vh;
+
+}
+
+header{
+
+    text-align:center;
+
+    padding:45px 20px 30px;
+
+}
+
+.trofeo{
+
+    font-size:70px;
+
+    animation:
+    flotar 2s infinite ease-in-out;
+
+}
+
+@keyframes flotar{
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+}
+
+h1{
+
+    font-size:
+    clamp(35px,7vw,65px);
+
+    font-weight:900;
+
+    text-shadow:
+    0 0 20px #00aaff;
+
+}
+
+.subtitulo{
+
+    margin-top:10px;
+
+    color:#dcecff;
+
+    font-size:18px;
+
+}
+
+.contenedor{
+
+    width:92%;
+
+    max-width:1000px;
+
+    margin:auto;
+
+}
+
+.card{
+
+    background:
+    rgba(255,255,255,0.10);
+
+    border:
+    1px solid
+    rgba(255,255,255,0.20);
+
+    backdrop-filter:
+    blur(12px);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 15px 40px
+    rgba(0,0,0,.35);
+
+}
+
+h2{
+
+    margin-bottom:20px;
+
+    text-align:center;
+
+}
+
+label{
+
+    display:block;
+
+    margin-top:10px;
+
+    font-weight:bold;
+
+}
+
+input,
+select{
+
+    width:100%;
+
+    padding:15px;
+
+    margin:8px 0 15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+button{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#00aaff;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#0077cc;
+
+    transform:scale(1.02);
+
+}
+
+.contador{
+
+    text-align:center;
+
+    font-size:22px;
+
+    margin-bottom:20px;
+
+}
+
+.jugadores{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(
+        auto-fit,
+        minmax(220px,1fr)
+    );
+
+    gap:15px;
+
+}
+
+.jugador{
+
+    background:
+    rgba(0,0,0,.25);
+
+    padding:18px;
+
+    border-radius:15px;
+
+    border-left:
+    5px solid #00aaff;
+
+}
+
+.numero{
+
+    color:#00aaff;
+
+    font-weight:bold;
+
+    margin-bottom:7px;
+
+}
+
+.club{
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    margin-top:6px;
+
+}
+
+.mensaje{
+
+    text-align:center;
+
+    margin-top:15px;
+
+    font-weight:bold;
+
+}
+
+.anfitrion{
+
+    margin-top:30px;
+
+}
+
+.panel{
+
+    display:none;
+
+}
+
+.panel-visible{
+
+    display:block;
+
+}
+
+.admin-card{
+
+    background:
+    rgba(0,0,0,.25);
+
+    padding:18px;
+
+    border-radius:15px;
+
+    border-left:
+    5px solid #ffd700;
+
+    margin-bottom:12px;
+
+}
+
+.admin-card .numero{
+
+    color:#ffd700;
+
+}
+
+.btn-eliminar{
+
+    background:#e63946;
+
+    margin-top:12px;
+
+    font-size:15px;
+
+}
+
+.btn-eliminar:hover{
+
+    background:#b71c1c;
+
+}
+
+.btn-borrar{
+
+    background:#ff5500;
+
+    margin-top:20px;
+
+}
+
+.btn-borrar:hover{
+
+    background:#cc3300;
+
+}
+
+.admin-info{
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+    color:#dcecff;
+
+}
+
+footer{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#bcd0e8;
+
+}
+
+.estado{
+
+    text-align:center;
+
+    padding:12px;
+
+    margin-bottom:20px;
+
+    border-radius:12px;
+
+    background:
+    rgba(0,170,255,.15);
+
+    border:
+    1px solid
+    rgba(0,170,255,.3);
+
+}
+
+@media(max-width:600px){
+
+    .card{
+
+        padding:20px;
+
+    }
+
+    .trofeo{
+
+        font-size:55px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="trofeo">
+        🏆
+    </div>
+
+    <h1>
+        MUNDIAL DE CLUBES
+    </h1>
+
+    <p class="subtitulo">
+        ⚽ Torneo oficial entre amigos ⚽
+    </p>
+
+</header>
+
+
+<div class="contenedor">
+
+
+<!-- =========================================
+     INSCRIPCIÓN
+========================================= -->
+
+<div class="card">
+
+    <h2>
+        📝 INSCRÍBETE AL TORNEO
+    </h2>
+
+    <div class="estado">
+
+        🔥 Máximo:
+        <strong>16 participantes</strong>
+
+    </div>
+
+
+    <form id="formulario">
+
+
+        <label>
+            👤 Tu nombre:
+        </label>
+
+        <input
+            type="text"
+            id="nombre"
+            placeholder="Escribe tu nombre"
+            required
+        >
+
+
+        <label>
+            ⚽ Elige tu club:
+        </label>
+
+
+        <select
+            id="club"
+            required
+        >
+
+            <option value="">
+                -- Selecciona un club --
+            </option>
+
+            <option>
+                Real Madrid
+            </option>
+
+            <option>
+                FC Barcelona
+            </option>
+
+            <option>
+                Manchester City
+            </option>
+
+            <option>
+                Manchester United
+            </option>
+
+            <option>
+                Liverpool
+            </option>
+
+            <option>
+                Chelsea
+            </option>
+
+            <option>
+                Arsenal
+            </option>
+
+            <option>
+                PSG
+            </option>
+
+            <option>
+                Bayern Múnich
+            </option>
+
+            <option>
+                Borussia Dortmund
+            </option>
+
+            <option>
+                Inter de Milán
+            </option>
+
+            <option>
+                AC Milan
+            </option>
+
+            <option>
+                Juventus
+            </option>
+
+            <option>
+                Atlético de Madrid
+            </option>
+
+            <option>
+                River Plate
+            </option>
+
+            <option>
+                Boca Juniors
+            </option>
+
+        </select>
+
+
+        <button type="submit">
+
+            ⚽ INSCRIBIRME
+
+        </button>
+
+
+    </form>
+
+
+    <p
+        class="mensaje"
+        id="mensaje">
+    </p>
+
+</div>
+
+
+
+<!-- =========================================
+     PARTICIPANTES
+========================================= -->
+
+<div class="card">
+
+    <h2>
+        👥 PARTICIPANTES
+    </h2>
+
+
+    <div class="contador">
+
+        <span id="cantidad">
+            0
+        </span>
+
+        / 16 inscritos
+
+    </div>
+
+
+    <div
+        class="jugadores"
+        id="lista">
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     ANFITRIÓN
+========================================= -->
+
+<div class="card anfitrion">
+
+
+    <h2>
+        👑 ANFITRIÓN
+    </h2>
+
+
+    <p class="admin-info">
+
+        Este apartado es solamente
+        para el organizador del torneo.
+
+    </p>
+
+
+    <label>
+        🔐 Código del anfitrión:
+    </label>
+
+
+    <input
+        type="password"
+        id="codigoAnfitrion"
+        placeholder="Introduce el código"
+    >
+
+
+    <button
+        onclick="entrarAnfitrion()">
+
+        👑 ENTRAR COMO ANFITRIÓN
+
+    </button>
+
+
+
+    <!-- PANEL -->
+
+    <div
+        class="panel"
+        id="panelAnfitrion">
+
+
+        <br>
+
+
+        <h2>
+            👑 PANEL DEL ANFITRIÓN
+        </h2>
+
+
+        <div class="estado">
+
+            🔓 Modo anfitrión activado
+
+        </div>
+
+
+        <div
+            id="listaAdmin">
+
+        </div>
+
+
+        <button
+            class="btn-borrar"
+            onclick="borrarTodo()">
+
+            🗑️ REINICIAR TORNEO
+
+        </button>
+
+
+        <br><br>
+
+
+        <button
+            onclick="cerrarAnfitrion()">
+
+            🔒 CERRAR PANEL
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+<footer>
+
+    🏆 MUNDIAL DE CLUBES
+    <br>
+    ⚽ Torneo entre amigos
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================================
+   CONFIGURACIÓN DEL ANFITRIÓN
+========================================= */
+
+
+/*
+   ESTE ES EL CÓDIGO DEL ANFITRIÓN
+
+   Puedes cambiarlo por otro.
+*/
+
+const CODIGO_ANFITRION = "1234";
+
+
+
+/* =========================================
+   CARGAR PARTICIPANTES
+========================================= */
+
+let participantes =
+JSON.parse(
+    localStorage.getItem(
+        "mundialClubes"
+    )
+) || [];
+
+
+
+/* =========================================
+   ELEMENTOS HTML
+========================================= */
+
+const formulario =
+document.getElementById(
+    "formulario"
+);
+
+const lista =
+document.getElementById(
+    "lista"
+);
+
+const cantidad =
+document.getElementById(
+    "cantidad"
+);
+
+const mensaje =
+document.getElementById(
+    "mensaje"
+);
+
+const listaAdmin =
+document.getElementById(
+    "listaAdmin"
+);
+
+const panelAnfitrion =
+document.getElementById(
+    "panelAnfitrion"
+);
+
+
+
+/* =========================================
+   MOSTRAR PARTICIPANTES
+========================================= */
+
+function mostrarParticipantes(){
+
+    lista.innerHTML = "";
+
+
+    participantes.forEach(
+        (jugador,index) => {
+
+
+            const tarjeta =
+            document.createElement(
+                "div"
+            );
+
+
+            tarjeta.className =
+            "jugador";
+
+
+            tarjeta.innerHTML = `
+
+                <div class="numero">
+
+                    JUGADOR ${index + 1}
+
+                </div>
+
+
+                <div>
+
+                    👤
+                    ${jugador.nombre}
+
+                </div>
+
+
+                <div class="club">
+
+                    ⚽
+                    ${jugador.club}
+
+                </div>
+
+            `;
+
+
+            lista.appendChild(
+                tarjeta
+            );
+
+        }
+    );
+
+
+    cantidad.textContent =
+    participantes.length;
+
+
+    mostrarAdmin();
+
+}
+
+
+
+/* =========================================
+   INSCRIBIR PARTICIPANTE
+========================================= */
+
+formulario.addEventListener(
+    "submit",
+    function(e){
+
+        e.preventDefault();
+
+
+        const nombre =
+        document.getElementById(
+            "nombre"
+        ).value.trim();
+
+
+        const club =
+        document.getElementById(
+            "club"
+        ).value;
+
+
+
+        /* COMPROBAR 16 */
+
+        if(
+            participantes.length >= 16
+        ){
+
+            mensaje.textContent =
+            "❌ El torneo ya está lleno.";
+
+            return;
+
+        }
+
+
+
+        /* COMPROBAR CAMPOS */
+
+        if(
+            !nombre ||
+            !club
+        ){
+
+            mensaje.textContent =
+            "❌ Completa todos los campos.";
+
+            return;
+
+        }
+
+
+
+        /* COMPROBAR CLUB */
+
+        const clubUsado =
+        participantes.some(
+            jugador =>
+            jugador.club === club
+        );
+
+
+        if(clubUsado){
+
+            mensaje.textContent =
+            "❌ Ese club ya fue elegido.";
+
+            return;
+
+        }
+
+
+
+        /* AGREGAR */
+
+        participantes.push({
+
+            nombre:
+            nombre,
+
+            club:
+            club
+
+        });
+
+
+
+        /* GUARDAR */
+
+        localStorage.setItem(
+            "mundialClubes",
+            JSON.stringify(
+                participantes
+            )
+        );
+
+
+
+        mensaje.textContent =
+        "✅ ¡Inscripción realizada!";
+
+
+        formulario.reset();
+
+
+        mostrarParticipantes();
+
+    }
+);
+
+
+
+/* =========================================
+   ENTRAR COMO ANFITRIÓN
+========================================= */
+
+function entrarAnfitrion(){
+
+
+    const codigo =
+    document.getElementById(
+        "codigoAnfitrion"
+    ).value;
+
+
+    if(
+        codigo ===
+        CODIGO_ANFITRION
+    ){
+
+        panelAnfitrion
+        .classList
+        .add(
+            "panel-visible"
+        );
+
+
+        document.getElementById(
+            "codigoAnfitrion"
+        ).value = "";
+
+
+        mostrarAdmin();
+
+
+    }else{
+
+        alert(
+            "❌ Código incorrecto."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================
+   MOSTRAR ADMINISTRADOR
+========================================= */
+
+function mostrarAdmin(){
+
+
+    if(
+        !panelAnfitrion
+        .classList
+        .contains(
+            "panel-visible"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    listaAdmin.innerHTML = "";
+
+
+    if(
+        participantes.length === 0
+    ){
+
+        listaAdmin.innerHTML = `
+
+            <div class="admin-card">
+
+                <div>
+                    👥 Todavía no hay participantes.
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+
+    participantes.forEach(
+        (jugador,index) => {
+
+
+            const tarjeta =
+            document.createElement(
+                "div"
+            );
+
+
+            tarjeta.className =
+            "admin-card";
+
+
+            tarjeta.innerHTML = `
+
+                <div class="numero">
+
+                    JUGADOR ${index + 1}
+
+                </div>
+
+
+                <div>
+
+                    👤
+                    ${jugador.nombre}
+
+                </div>
+
+
+                <div class="club">
+
+                    ⚽
+                    ${jugador.club}
+
+                </div>
+
+
+                <button
+                    class="btn-eliminar"
+                    onclick="
+                    eliminarJugador(${index})
+                    ">
+
+                    ❌ ELIMINAR PARTICIPANTE
+
+                </button>
+
+            `;
+
+
+            listaAdmin.appendChild(
+                tarjeta
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================
+   ELIMINAR PARTICIPANTE
+========================================= */
+
+function eliminarJugador(index){
+
+
+    const confirmar =
+    confirm(
+        "¿Quieres eliminar a este participante?"
+    );
+
+
+    if(!confirmar){
+
+        return;
+
+    }
+
+
+    participantes.splice(
+        index,
+        1
+    );
+
+
+    localStorage.setItem(
+        "mundialClubes",
+        JSON.stringify(
+            participantes
+        )
+    );
+
+
+    mostrarParticipantes();
+
+}
+
+
+
+/* =========================================
+   BORRAR TODO
+========================================= */
+
+function borrarTodo(){
+
+
+    const confirmar =
+    confirm(
+        "⚠️ ¿Seguro que quieres reiniciar todo el torneo?"
+    );
+
+
+    if(!confirmar){
+
+        return;
+
+    }
+
+
+    participantes = [];
+
+
+    localStorage.removeItem(
+        "mundialClubes"
+    );
+
+
+    mostrarParticipantes();
+
+
+    alert(
+        "✅ El torneo fue reiniciado."
+    );
+
+}
+
+
+
+/* =========================================
+   CERRAR PANEL
+========================================= */
+
+function cerrarAnfitrion(){
+
+
+    panelAnfitrion
+    .classList
+    .remove(
+        "panel-visible"
+    );
+
+}
+
+
+
+/* =========================================
+   INICIAR PÁGINA
+========================================= */
+
+mostrarParticipantes();
+
+
+</script>
+
+
+</body>
+
+</html>
+
+const CODIGO_ANFITRION = "1234";
